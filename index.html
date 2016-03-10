@@ -2,38 +2,152 @@
 <html>
 
 <head>
+
     <meta charset="UTF-8">
     <title>jquery template</title>
+    <style>
+        #right {
+            float: right;
+        }
+        
+        #left {
+            float: left;
+        }
+        
+        #banner {
+            position: absolute;
+            text-align: center;
+            bottom: 0;
+            height: 40%;
+            width: 100%;
+            font-size: 50px;
+            border-width: 15px;
+            border-style: groove;
+        }
+    </style>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
+        var colors = ["blue", "green", "yellow", "purple"];
+        var backgrounds = ["pink", "orange", "brown", "black"];
+        var backgrounds2 = ["aqua ", "BlueViolet ", "GreenYellow", "SlateBlue"];
+        var borderColors = ["CornflowerBlue", "DeepPink ", "FireBrick", "GoldenRod"];
+
+
+
         $(function() {
+
+            $("#generateButton").click(function() {
+
+                var userText = $("#userText").val();
+                var userTextColor = $("#userTextColor").val();
+                var userBackground = $("#userBackground").val();
+                $("#text").html(userText);
+                $("#text").css("color", userTextColor);
+                $("#banner").css("background-color", userBackground);
+
+            });
+
+            // $('#gradient').change(function() {
+            //     if ($(this).is(":checked")) {
+            //         alert("gradient");
+            //         var gradient = "linear-gradient(to bottom right, backgrounds[Math.floor(Math.random() * 3.999)], backgrounds2[Math.floor(Math.random() * 3.999)])";
+            //     }
+
+            // });
+
+
+            // $('#border').change(function() {
+            //     if ($(this).is(":checked")) {
+            //         alert("border");
+            //         var border = "borderColors[Math.floor(Math.random() * 3.999)]";
+            //     }
+
+            // });
+
+
+
+            $("#randomButton").click(function() {
+
+                var randomText = $("#randomText").val();
+                var randomColor = colors[Math.floor(Math.random() * 3.999)];
+                var randomBackground = backgrounds[Math.floor(Math.random() * 3.999)];
+                $("#text").html(randomText);
+                $("#text").css("color", randomColor);
+
+
+                if ($("#gradient").is(":checked")) {
+
+                    var gradient1 = backgrounds[Math.floor(Math.random() * 3.999)];
+                    var gradient2 = backgrounds2[Math.floor(Math.random() * 3.999)];
+                    //  alert(gradient);
+                    $("#banner").css("background-image", "linear-gradient(to bottom right," + gradient1 + "," + gradient2 + ")" );
+                }
+                else {
+                    $("#banner").css("background", randomBackground);
+                }
+
+
+                if ($("#border").is(":checked")) {
+
+                    var border = borderColors[Math.floor(Math.random() * 3.999)];
+                    $("#banner").css("border-color", border);
+                }
+
+
+
+
+
+            });
+
+
 
         });
     </script>
 </head>
 
 <body>
+    <div id="left">
+        Text:
+        <br>
+        <input type="text" id="userText">
+        <br>
+        <br> Color of the text:
+        <br>
+        <input type="color" name="userTextColor" id="userTextColor" value="#00FF00">
+        <br>
+        <br> Background Color:
+        <br>
+        <input type="color" name="userBackground" id="userBackground" value="#0000FF">
+        <br>
+        <br>
 
-    Text:
-    <br>
-    <input type="text">
-    <br>
-    <br> Color of the text: aaaa
-    <br>
-    <input type="text">
-    <br>
-    <br> Style:
-    <br>
-    <input type="radio" name="" value="">
-    <br>
-    <input type="radio" name="" value="">
-    <br>
-    <input type="radio" name="" value="">
-    <br>
-    <button type="button" id="generate">Generate</button>
-    <br>
-    <p>Or you can generate a random banner! Just enter the text! </p>
-    <button type="button" id="random">Generate Random</button>
+        <button type="button" id="generateButton">Generate</button>
+        <br>
+
+    </div>
+
+
+    <div id="right">
+        <p class="right">Or you can generate a random banner.
+            <br> Just enter the words you want to say! </p>
+        <input class="right" type="text" id="randomText">
+        <br>
+        <br>
+        <form action="swag">
+            Extra options:
+            <br>
+            <input type="checkbox" id="gradient">Cool Gradient
+            <br>
+            <input type="checkbox" id="border">Cool Border
+        </form>
+        <br>
+        <button class="right" type="button" id="randomButton">Generate Random</button>
+    </div>
+
+    <div id="banner">
+        <p id="text"></p>
+    </div>
+
 </body>
 
 </html>
