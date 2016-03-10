@@ -5,7 +5,9 @@
 
     <meta charset="UTF-8">
     <title>jquery template</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
     <style>
+    
         #right {
             float: right;
         }
@@ -14,21 +16,31 @@
             float: left;
         }
         
+        #center{
+            text-align:center;
+            font-size:30px;
+            color:purple;
+            text-shadow: 2px 2px 15px red;
+        }
+        
         #banner {
             position: absolute;
             text-align: center;
             bottom: 0;
             height: 40%;
             width: 100%;
-            font-size: 50px;
+            
             border-width: 15px;
             border-style: groove;
+            font-size: 75px;
+            font-family: 'Tangerine', serif;
+            text-shadow: 2px 2px 15px #FFF8DC;
         }
     </style>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
-        var colors = ["blue", "green", "yellow", "purple"];
-        var backgrounds = ["pink", "orange", "brown", "black"];
+        var colors = ["blue", "green", "tomato", "purple"];
+        var backgrounds = ["pink", "orange", "Chartreuse ", "black"];
         var backgrounds2 = ["aqua ", "BlueViolet ", "GreenYellow", "SlateBlue"];
         var borderColors = ["CornflowerBlue", "DeepPink ", "FireBrick", "GoldenRod"];
 
@@ -47,25 +59,6 @@
 
             });
 
-            // $('#gradient').change(function() {
-            //     if ($(this).is(":checked")) {
-            //         alert("gradient");
-            //         var gradient = "linear-gradient(to bottom right, backgrounds[Math.floor(Math.random() * 3.999)], backgrounds2[Math.floor(Math.random() * 3.999)])";
-            //     }
-
-            // });
-
-
-            // $('#border').change(function() {
-            //     if ($(this).is(":checked")) {
-            //         alert("border");
-            //         var border = "borderColors[Math.floor(Math.random() * 3.999)]";
-            //     }
-
-            // });
-
-
-
             $("#randomButton").click(function() {
 
                 var randomText = $("#randomText").val();
@@ -79,8 +72,7 @@
 
                     var gradient1 = backgrounds[Math.floor(Math.random() * 3.999)];
                     var gradient2 = backgrounds2[Math.floor(Math.random() * 3.999)];
-                    //  alert(gradient);
-                    $("#banner").css("background-image", "linear-gradient(to bottom right," + gradient1 + "," + gradient2 + ")" );
+                    $("#banner").css("background-image", "linear-gradient(to bottom right," + gradient1 + "," + gradient2 + ")");
                 }
                 else {
                     $("#banner").css("background", randomBackground);
@@ -136,12 +128,18 @@
         <form action="swag">
             Extra options:
             <br>
-            <input type="checkbox" id="gradient">Cool Gradient
+            <input type="checkbox" id="gradient">Random Gradient
             <br>
-            <input type="checkbox" id="border">Cool Border
+            <input type="checkbox" id="border">Colored Border
         </form>
         <br>
         <button class="right" type="button" id="randomButton">Generate Random</button>
+    </div>
+    
+    <div id="center">
+        <p>Banner generator</p>
+        <img src="junhlogo.png" height="125" width="350">
+        
     </div>
 
     <div id="banner">
