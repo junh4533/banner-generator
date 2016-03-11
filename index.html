@@ -5,9 +5,9 @@
 
     <meta charset="UTF-8">
     <title>jquery template</title>
+    <!--allows me to use the tangerine font-->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
     <style>
-    
         #right {
             float: right;
         }
@@ -16,10 +16,10 @@
             float: left;
         }
         
-        #center{
-            text-align:center;
-            font-size:30px;
-            color:purple;
+        #center {
+            text-align: center;
+            font-size: 30px;
+            color: purple;
             text-shadow: 2px 2px 15px red;
         }
         
@@ -29,7 +29,6 @@
             bottom: 0;
             height: 40%;
             width: 100%;
-            
             border-width: 15px;
             border-style: groove;
             font-size: 75px;
@@ -39,59 +38,58 @@
     </style>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
+        //creates 4 arrays, each having 4 possible colors
         var colors = ["blue", "green", "tomato", "purple"];
         var backgrounds = ["pink", "orange", "Chartreuse ", "black"];
         var backgrounds2 = ["aqua ", "BlueViolet ", "GreenYellow", "SlateBlue"];
         var borderColors = ["CornflowerBlue", "DeepPink ", "FireBrick", "GoldenRod"];
 
-
-
         $(function() {
 
+            //when the 'generate' button is clicked
             $("#generateButton").click(function() {
 
-                var userText = $("#userText").val();
+                var userText = $("#userText").val(); //takes the text that the user inputs and stores it as 'userText'
                 var userTextColor = $("#userTextColor").val();
                 var userBackground = $("#userBackground").val();
-                $("#text").html(userText);
+                $("#text").html(userText); //assigns userText to the text of the banner
                 $("#text").css("color", userTextColor);
                 $("#banner").css("background-color", userBackground);
-
             });
 
+            //when the 'generate random' button is clicked
             $("#randomButton").click(function() {
 
                 var randomText = $("#randomText").val();
-                var randomColor = colors[Math.floor(Math.random() * 3.999)];
+                // Math.floor rounds a number down to the nearest integer (2.6 would be rouded to 2)
+                // Math.random randomly generates a number from 0 to 1, inclusively (0.584337979 can be a possible value)
+                //since there are 4 colors in each array, I need to generate a random number from 0 to 3 
+                var randomColor = colors[Math.floor(Math.random() * 3.999)]; //assigns a random color (from the array 'colors') to 'randomColor'
                 var randomBackground = backgrounds[Math.floor(Math.random() * 3.999)];
                 $("#text").html(randomText);
                 $("#text").css("color", randomColor);
 
 
-                if ($("#gradient").is(":checked")) {
 
+                //upon clicking the button, the if-statement will check whether the 'Random gradient' box is checked
+                if ($("#gradient").is(":checked")) {
+                    //if so, 'gradient1' and 'gradient2' will have a random color (from the array) assigned to them
                     var gradient1 = backgrounds[Math.floor(Math.random() * 3.999)];
                     var gradient2 = backgrounds2[Math.floor(Math.random() * 3.999)];
+                    //then, a gradient will be applied, using the colors stored in the variables
                     $("#banner").css("background-image", "linear-gradient(to bottom right," + gradient1 + "," + gradient2 + ")");
                 }
                 else {
+                    //otherwise, the background will not have a gradient    
                     $("#banner").css("background", randomBackground);
                 }
 
-
                 if ($("#border").is(":checked")) {
-
                     var border = borderColors[Math.floor(Math.random() * 3.999)];
                     $("#banner").css("border-color", border);
                 }
 
-
-
-
-
             });
-
-
 
         });
     </script>
@@ -100,8 +98,7 @@
 <body>
     <div id="left">
         Regular Banner
-        <br>
-        Text:
+        <br> Text:
         <br>
         <input type="text" id="userText">
         <br>
@@ -137,11 +134,11 @@
         <br>
         <button class="right" type="button" id="randomButton">Generate Random</button>
     </div>
-    
+
     <div id="center">
         <p>Banner generator</p>
         <img src="junhlogo.png" height="125" width="350">
-        
+
     </div>
 
     <div id="banner">
